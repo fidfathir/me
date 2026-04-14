@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Mohd Firdauz Mohd Fathir</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0d0d0d; --bg2: #131313; --bg3: #1a1a1a;
+    --line: rgba(255,255,255,0.08); --line2: rgba(255,255,255,0.15);
+    --text: #e8e4dc; --muted: #888880; --accent: #c8a96e; --accent2: #8a6d42; --white: #f5f2ec;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 300; font-size: 15px; line-height: 1.8; overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem; background: rgba(13,13,13,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1rem; letter-spacing: 0.03em; color: var(--white); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  #hero { min-height: 100vh; display: grid; grid-template-columns: 1fr auto; align-items: flex-end; padding: 0 0 6rem 4rem; position: relative; border-bottom: 1px solid var(--line); overflow: hidden; }
+  .hero-portrait { width: clamp(280px, 32vw, 480px); height: 100vh; object-fit: cover; object-position: center top; filter: grayscale(30%) contrast(1.05); opacity: 0.85; align-self: stretch; flex-shrink: 0; }
+  .hero-portrait-wrap { position: relative; align-self: stretch; }
+  .hero-portrait-wrap::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 60%; background: linear-gradient(to right, var(--bg), transparent); z-index: 1; }
+  .hero-portrait-wrap::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 30%; background: linear-gradient(to top, var(--bg), transparent); z-index: 1; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 70% 40%, rgba(200,169,110,0.04) 0%, transparent 70%), repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(255,255,255,0.02) 80px); }
+  .hero-number { position: absolute; right: 4rem; top: 50%; transform: translateY(-50%); font-family: 'Playfair Display', serif; font-size: clamp(8rem, 18vw, 22rem); color: rgba(255,255,255,0.025); line-height: 1; user-select: none; pointer-events: none; }
+  .hero-content { position: relative; max-width: 860px; }
+  .hero-eyebrow { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+  .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5.5vw, 5rem); font-weight: 400; line-height: 1.1; color: var(--white); margin-bottom: 1.5rem; }
+  .hero-name em { font-style: italic; color: var(--accent); }
+  .hero-tagline { font-size: 1rem; color: var(--muted); max-width: 480px; margin-bottom: 3rem; line-height: 1.9; font-weight: 300; }
+  .hero-ctas { display: flex; gap: 1rem; align-items: center; }
+  .btn-primary { background: var(--accent); color: #0d0d0d; padding: 0.75rem 2rem; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; font-weight: 500; transition: background 0.3s; font-family: 'Inter', sans-serif; }
+  .btn-primary:hover { background: #d4b87a; }
+  .btn-ghost { color: var(--muted); padding: 0.75rem 2rem; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--line2); font-weight: 400; transition: all 0.3s; font-family: 'Inter', sans-serif; }
+  .btn-ghost:hover { color: var(--text); border-color: var(--muted); }
+  .hero-scroll { position: absolute; bottom: 2.5rem; right: 4rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--muted); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; }
+  .scroll-line { width: 1px; height: 3rem; background: linear-gradient(to bottom, var(--accent), transparent); }
+
+  section { padding: 7rem 4rem; border-bottom: 1px solid var(--line); }
+  .section-label { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem; }
+  .section-label::after { content: ''; flex: 1; max-width: 3rem; height: 1px; background: var(--accent2); }
+
+  #about .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+  .about-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: center top; filter: grayscale(20%) contrast(1.05); opacity: 0.9; }
+  .about-img-wrap { position: relative; }
+  .about-img-wrap::after { content: ''; position: absolute; bottom: -1rem; left: -1rem; width: 60%; height: 60%; border: 1px solid var(--accent2); z-index: -1; }
+  .about-headline { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 400; line-height: 1.2; color: var(--white); margin-bottom: 2rem; }
+  .about-headline em { font-style: italic; color: var(--accent); }
+  .about-body { color: var(--muted); line-height: 2; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+  .stat-item { border-left: 1px solid var(--accent2); padding-left: 1.25rem; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--white); line-height: 1; margin-bottom: 0.25rem; }
+  .stat-label { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  #expertise .expertise-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0; }
+  .expertise-item { padding: 2.5rem; border: 1px solid var(--line); margin: -1px 0 0 -1px; transition: background 0.3s; cursor: default; }
+  .expertise-item:hover { background: var(--bg3); }
+  .exp-num { font-family: 'Playfair Display', serif; font-size: 3rem; color: rgba(200,169,110,0.15); line-height: 1; margin-bottom: 1.5rem; }
+  .exp-title { font-size: 1rem; color: var(--white); font-weight: 500; margin-bottom: 0.75rem; }
+  .exp-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.9; }
+
+  #radar { background: var(--bg2); }
+  .radar-inner { display: grid; grid-template-columns: 1fr 1.2fr; gap: 6rem; align-items: center; }
+  .radar-label { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .radar-name { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 6vw, 5rem); color: var(--white); line-height: 1.1; margin-bottom: 1.5rem; }
+  .radar-name span { color: var(--accent); }
+  .radar-full { font-size: 0.7rem; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 2rem; text-transform: uppercase; }
+  .radar-desc { color: var(--muted); line-height: 2; margin-bottom: 2.5rem; }
+  .radar-features { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 3rem; }
+  .radar-feat { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.8rem; color: var(--muted); }
+  .feat-dot { width: 4px; height: 4px; background: var(--accent); border-radius: 50%; margin-top: 0.55rem; flex-shrink: 0; }
+  .radar-visual { position: relative; padding: 3rem; border: 1px solid var(--line2); background: var(--bg); }
+  .radar-visual-inner { display: flex; flex-direction: column; gap: 0; }
+  .rviz-row { display: flex; align-items: center; gap: 1rem; font-size: 0.75rem; padding: 0.85rem 0; }
+  .rviz-icon { width: 32px; height: 32px; border: 1px solid var(--line2); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; flex-shrink: 0; color: var(--accent); font-family: 'Playfair Display', serif; }
+  .rviz-label { color: var(--muted); flex: 1; }
+  .rviz-connector { width: 1px; height: 1.2rem; background: var(--line2); margin-left: 1rem; }
+
+  #speaking .speaking-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; }
+  .speaking-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top; filter: grayscale(20%) contrast(1.05); opacity: 0.9; margin-top: 2rem; }
+  .speaking-intro { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; color: var(--white); line-height: 1.4; }
+  .speaking-intro em { font-style: italic; color: var(--accent); }
+  .engagements { display: flex; flex-direction: column; gap: 0; }
+  .engagement { display: grid; grid-template-columns: 5rem 1fr auto; align-items: center; gap: 2rem; padding: 1.5rem 0; border-bottom: 1px solid var(--line); }
+  .eng-year { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; }
+  .eng-name { font-size: 0.9rem; color: var(--text); }
+  .eng-topic { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+  .eng-tag { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent2); padding: 0.25rem 0.6rem; white-space: nowrap; }
+
+  #research .research-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .pub-card { padding: 2rem; border: 1px solid var(--line); transition: border-color 0.3s; }
+  .pub-card:hover { border-color: var(--accent2); }
+  .pub-year { font-size: 0.65rem; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.75rem; }
+  .pub-title { font-size: 0.9rem; color: var(--white); line-height: 1.6; margin-bottom: 0.75rem; }
+  .pub-journal { font-size: 0.75rem; color: var(--muted); font-style: italic; }
+  .scholar-link { margin-top: 3rem; display: inline-flex; align-items: center; gap: 0.75rem; color: var(--muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s; }
+  .scholar-link:hover { color: var(--accent); }
+  .scholar-link::after { content: '→'; }
+
+  #contact { background: var(--bg2); }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+  .contact-headline { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem); color: var(--white); line-height: 1.2; margin-bottom: 1.5rem; }
+  .contact-headline em { font-style: italic; color: var(--accent); }
+  .contact-sub { color: var(--muted); line-height: 2; margin-bottom: 2.5rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link { display: flex; align-items: center; gap: 1rem; color: var(--muted); text-decoration: none; font-size: 0.85rem; padding: 1rem 0; border-bottom: 1px solid var(--line); transition: color 0.3s; }
+  .contact-link:hover { color: var(--accent); }
+  .cl-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); min-width: 5rem; }
+  .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
+  .cf-group { display: flex; flex-direction: column; gap: 0.5rem; }
+  .cf-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+  .cf-input, .cf-textarea { background: var(--bg); border: 1px solid var(--line2); color: var(--text); padding: 0.9rem 1rem; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 300; outline: none; transition: border-color 0.3s; resize: none; }
+  .cf-input:focus, .cf-textarea:focus { border-color: var(--accent); }
+  .cf-textarea { min-height: 120px; }
+
+  footer { padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--line); }
+  .footer-name { font-family: 'Playfair Display', serif; font-size: 0.9rem; color: var(--muted); }
+  .footer-copy { font-size: 0.7rem; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.25rem 2rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 2rem; }
+    #hero { padding: 0 2rem 5rem; }
+    .hero-scroll { right: 2rem; }
+    .about-grid, .radar-inner, .speaking-grid, .research-grid, .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .expertise-grid { grid-template-columns: 1fr; }
+    footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    .engagement { grid-template-columns: 1fr; gap: 0.5rem; }
+    .eng-tag { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Dr. Mohd Firdauz Mohd Fathir</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#radar" style="color: var(--accent); font-weight: 500; font-size: 0.85rem; letter-spacing: 0.12em;">RA<span style="color: var(--white);">D</span>AR©</a></li>
+    <li><a href="#speaking">Speaking</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-number">F</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Visual Research · Media Warfare · HCC</div>
+    <h1 class="hero-name">Dr. Mohd Firdauz<br><em>Mohd Fathir</em></h1>
+    <p class="hero-tagline">Decoding influence. Engineering narratives.<br>Securing minds against information warfare.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Invite to Speak</a>
+      <a href="#radar" class="btn-ghost">See <strong>RADAR</strong></a>
+    </div>
+  </div>
+  <div class="hero-portrait-wrap">
+    <img class="hero-portrait" src="https://i.postimg.cc/Vkn3qxTh/Fid_Corp_Photo.jpg" alt="Dr. Mohd Firdauz Mohd Fathir">
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-label">About</div>
+  <div class="about-grid">
+    <div>
+      <h2 class="about-headline">Scholar.<br><em>Strategist.</em><br>Practitioner.</h2>
+      <p class="about-body">PhD in Media and Information Warfare Studies. Over a decade shaping how Malaysia thinks about influence, propaganda, and strategic communications — in classrooms, war rooms, and boardrooms alike.<br><br>Affiliated with the Centre for Media and Information Warfare Studies (CMIWS) at UiTM, where the work goes beyond theory — into building real intelligence systems for real decision-makers.<br><br>A growing body of work now sits at the intersection of <strong style="color: var(--accent); font-weight: 400;">Human-Computer Communication (HCC)</strong> — exploring how humans and AI systems communicate, collaborate, and co-produce intelligence. This theoretical lens underpins the RADAR framework, positioning human judgment not as a checkpoint, but as the critical communicator within an automated intelligence pipeline.</p>
+    </div>
+    <div>
+      <div class="about-img-wrap" style="margin-bottom: 2.5rem;">
+        <img class="about-img" src="https://i.postimg.cc/dtpYmm0V/422293527-10161213009204320-5035562622956294920-n.jpg" alt="Dr. Fid in discussion">
+      </div>
+      <p class="about-body">Research anchored in visual framing, political participation, cognitive influence, and the psychology of persuasion — applied directly to government communications strategy, counter-narrative operations, and AI-powered intelligence platforms.</p>
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Years teaching</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">PhD</div>
+          <div class="stat-label">Media & Info Warfare</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">CMIWS</div>
+          <div class="stat-label">UiTM Rembau</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">AI</div>
+          <div class="stat-label">Gov-focused systems</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="expertise">
+  <div class="section-label">Expertise</div>
+  <div class="expertise-grid">
+    <div class="expertise-item">
+      <div class="exp-num">01</div>
+      <div class="exp-title">Strategic Communications</div>
+      <p class="exp-desc">Narrative architecture for government agencies and GLCs — from daily content strategy to crisis communication and national messaging frameworks.</p>
+    </div>
+    <div class="expertise-item">
+      <div class="exp-num">02</div>
+      <div class="exp-title">Information Warfare & PsyOps</div>
+      <p class="exp-desc">Deep expertise in psychological operations, propaganda analysis, and counter-influence strategy. Research anchored in CMIWS's psychological warfare framework.</p>
+    </div>
+    <div class="expertise-item">
+      <div class="exp-num">03</div>
+      <div class="exp-title">OSINT & Counter-Narrative</div>
+      <p class="exp-desc">Real-time open-source intelligence workflows, sentiment monitoring, and AI-generated counter-narratives — operationalised for state-level actors.</p>
+    </div>
+    <div class="expertise-item">
+      <div class="exp-num">04</div>
+      <div class="exp-title">AI for Government</div>
+      <p class="exp-desc">Building and deploying AI systems tailored for public sector use — from locally hosted LLMs to automated intelligence dashboards for policy decision-makers.</p>
+    </div>
+    <div class="expertise-item">
+      <div class="exp-num">05</div>
+      <div class="exp-title">Cognitive Influence</div>
+      <p class="exp-desc">Kahneman-based frameworks applied to communication design — loss aversion, framing effects, System 1 vs 2 thinking — for behavioural nudging in public policy.</p>
+    </div>
+    <div class="expertise-item">
+      <div class="exp-num">06</div>
+      <div class="exp-title">Human-Computer Communication</div>
+      <p class="exp-desc">Theoretical framework exploring how humans and AI systems communicate, collaborate, and co-produce intelligence — with RADAR as the operational model within this paradigm.</p>
+    </div>
+  </div>
+</section>
+
+<section id="radar">
+  <div class="radar-inner">
+    <div>
+      <div class="section-label">Flagship Framework</div>
+      <div class="radar-label">Introducing</div>
+      <div class="radar-name"><span>RA</span><span style="color: var(--white);">D</span><span>AR</span> <sup style="font-size: 1.2rem; color: var(--accent); font-family: 'Inter', sans-serif; font-weight: 300; vertical-align: super;">©</sup></div>
+      <div class="radar-full">Read · Analyse · Discern · Act · Report &nbsp;©</div>
+      <p class="radar-desc">A Human-in-the-Loop intelligence pipeline for strategic communications and information warfare. RADAR places human judgment — the Discern stage — at the critical centre of an otherwise automated AI-driven process.</p>
+      <div class="radar-features">
+        <div class="radar-feat"><div class="feat-dot"></div><span>Automated OSINT crawl</span></div>
+        <div class="radar-feat"><div class="feat-dot"></div><span>AI sentiment & narrative mapping</span></div>
+        <div class="radar-feat"><div class="feat-dot"></div><span>Human-in-the-Loop (Discern)</span></div>
+        <div class="radar-feat"><div class="feat-dot"></div><span>AI-assisted response generation</span></div>
+        <div class="radar-feat"><div class="feat-dot"></div><span>Automated report & deck output</span></div>
+        <div class="radar-feat"><div class="feat-dot"></div><span>Grounded in HCC theory</span></div>
+      </div>
+      <a href="#contact" class="btn-primary">Request a Briefing</a>
+    </div>
+    <div class="radar-visual">
+      <div class="radar-visual-inner">
+        <div style="font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem;">Intelligence pipeline</div>
+        <div class="rviz-row">
+          <div class="rviz-icon">R</div>
+          <div class="rviz-label">Read</div>
+          <div style="font-size: 0.65rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase;">Automated</div>
+        </div>
+        <div class="rviz-connector"></div>
+        <div class="rviz-row">
+          <div class="rviz-icon">A</div>
+          <div class="rviz-label">Analyse</div>
+          <div style="font-size: 0.65rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase;">Automated</div>
+        </div>
+        <div class="rviz-connector"></div>
+        <div class="rviz-row" style="background: rgba(200,169,110,0.05); padding: 0.5rem; margin: 0 -0.5rem; border: 1px solid rgba(200,169,110,0.25);">
+          <div class="rviz-icon" style="border-color: var(--accent);">D</div>
+          <div class="rviz-label" style="color: var(--accent);">Discern</div>
+          <div style="font-size: 0.6rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">HITL ◈</div>
+        </div>
+        <div class="rviz-connector"></div>
+        <div class="rviz-row">
+          <div class="rviz-icon">A</div>
+          <div class="rviz-label">Act</div>
+          <div style="font-size: 0.65rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase;">AI-Assisted</div>
+        </div>
+        <div class="rviz-connector"></div>
+        <div class="rviz-row">
+          <div class="rviz-icon">R</div>
+          <div class="rviz-label">Report</div>
+          <div style="font-size: 0.65rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase;">Automated</div>
+        </div>
+        <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: 0.7rem; color: var(--muted);">
+          Theoretical umbrella: <span style="color: var(--accent);">Human-Computer Communication</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="speaking">
+  <div class="section-label">Speaking & Training</div>
+  <div class="speaking-grid">
+    <div>
+      <h2 class="speaking-intro">Ideas that move<br><em>rooms</em> — and<br>change minds.</h2>
+      <img class="speaking-img" src="https://i.postimg.cc/ZK1GybfQ/fid.jpg" alt="Dr. Fid speaking">
+    </div>
+    <div>
+      <div class="engagements">
+        <div class="engagement">
+          <div class="eng-year">2024</div>
+          <div><div class="eng-name">PUSPAHANAS</div><div class="eng-topic">Future of Warfare with AI</div></div>
+          <div class="eng-tag">Keynote</div>
+        </div>
+        <div class="engagement">
+          <div class="eng-year">2024</div>
+          <div><div class="eng-name">Kementerian Dalam Negeri</div><div class="eng-topic">AI in Government Communications</div></div>
+          <div class="eng-tag">Workshop</div>
+        </div>
+        <div class="engagement">
+          <div class="eng-year">2024</div>
+          <div><div class="eng-name">Ministry of Foreign Affairs</div><div class="eng-topic">Visual Propaganda, Persuasion & National Identity</div></div>
+          <div class="eng-tag">Talk</div>
+        </div>
+        <div class="engagement">
+          <div class="eng-year">2024</div>
+          <div><div class="eng-name">AI in Military Operations Forum</div><div class="eng-topic">Media & Information Warfare Studies — Panelist</div></div>
+          <div class="eng-tag">Panel</div>
+        </div>
+        <div class="engagement">
+          <div class="eng-year">2023</div>
+          <div><div class="eng-name">Psychological Influence Lecture</div><div class="eng-topic">Kahneman, Decision-Making & Cognitive Bias</div></div>
+          <div class="eng-tag">Lecture</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="section-label">Research & Publications</div>
+  <div class="research-grid">
+    <div class="pub-card">
+      <div class="pub-year">2024</div>
+      <div class="pub-title">Generative AI for Political and National Sentiment Analysis</div>
+      <div class="pub-journal">Working paper · CMIWS, UiTM</div>
+    </div>
+    <div class="pub-card">
+      <div class="pub-year">2023</div>
+      <div class="pub-title">Technological Fatigue Among Academics in the Age of Generative AI</div>
+      <div class="pub-journal">UiTM Research Initiative</div>
+    </div>
+    <div class="pub-card">
+      <div class="pub-year">2016</div>
+      <div class="pub-title">Designing Racial Unity Through Films: The Kansei Engineering Approach</div>
+      <div class="pub-journal">Advanced Science Letters, Vol. 22</div>
+    </div>
+    <div class="pub-card">
+      <div class="pub-year">2014</div>
+      <div class="pub-title">Avatar Warrior: A Kansei Analysis of Game Avatar Design and Propaganda</div>
+      <div class="pub-journal">Faculty of Communication and Media Studies, UiTM</div>
+    </div>
+  </div>
+  <a href="https://scholar.google.com/citations?user=vJtz9FoAAAAJ" class="scholar-link">View full profile on Google Scholar</a>
+</section>
+
+<section id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="section-label">Contact</div>
+      <h2 class="contact-headline">Let's work<br><em>together.</em></h2>
+      <p class="contact-sub">Available for speaking engagements, training workshops, strategic communications consulting, and RADAR framework demonstrations for government and institutional clients.</p>
+      <div class="contact-links">
+        <a href="mailto:mfirdauz@uitm.edu.my" class="contact-link">
+          <span class="cl-label">Email</span>
+          <span>mfirdauz@uitm.edu.my</span>
+        </a>
+        <a href="#" class="contact-link">
+          <span class="cl-label">Institution</span>
+          <span>UiTM Rembau, Negeri Sembilan</span>
+        </a>
+        <a href="https://scholar.google.com/citations?user=vJtz9FoAAAAJ" class="contact-link">
+          <span class="cl-label">Scholar</span>
+          <span>Google Scholar Profile</span>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="contact-form">
+        <div class="cf-group">
+          <label class="cf-label">Name</label>
+          <input class="cf-input" type="text" id="cf-name" placeholder="Your name">
+        </div>
+        <div class="cf-group">
+          <label class="cf-label">Organisation</label>
+          <input class="cf-input" type="text" id="cf-org" placeholder="Agency / Ministry / Company">
+        </div>
+        <div class="cf-group">
+          <label class="cf-label">Email</label>
+          <input class="cf-input" type="email" id="cf-email" placeholder="your@email.com">
+        </div>
+        <div class="cf-group">
+          <label class="cf-label">Message</label>
+          <textarea class="cf-textarea" id="cf-msg" placeholder="Tell me what you're looking for…"></textarea>
+        </div>
+        <button class="btn-primary" style="align-self: flex-start; cursor: pointer; border: none;" onclick="sendEmail()">Send Message</button>
+      </div>
+      <script>
+        function sendEmail() {
+          var name = document.getElementById('cf-name').value || '';
+          var org = document.getElementById('cf-org').value || '';
+          var email = document.getElementById('cf-email').value || '';
+          var msg = document.getElementById('cf-msg').value || '';
+          var subject = encodeURIComponent('Enquiry from ' + (name || 'Website Visitor'));
+          var body = encodeURIComponent(
+            'Name: ' + name + '\n' +
+            'Organisation: ' + org + '\n' +
+            'Email: ' + email + '\n\n' +
+            'Message:\n' + msg
+          );
+          window.location.href = 'mailto:mfirdauz@uitm.edu.my?subject=' + subject + '&body=' + body;
+        }
+      </script>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Dr. Mohd Firdauz bin Mohd Fathir · PhD Media and Information Warfare</div>
+  <div class="footer-copy">© 2026 · CMIWS · UiTM Rembau</div>
+</footer>
+
+</body>
+</html>
