@@ -20,6 +20,17 @@
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
   .nav-links a:hover { color: var(--accent); }
+  .nav-dropdown { position: relative; display: flex; align-items: center; }
+  .nav-dropdown-toggle { color: var(--muted); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 400; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; transition: color 0.3s; font-family: 'Inter', sans-serif; line-height: 1; padding: 0; margin: 0; vertical-align: middle; }
+  .nav-dropdown-toggle:hover { color: var(--accent); }
+  .nav-dropdown-arrow { font-size: 0.5rem; transition: transform 0.3s; display: inline-block; }
+  .nav-dropdown:hover .nav-dropdown-arrow { transform: rotate(180deg); }
+  .nav-dropdown-menu { position: absolute; top: calc(100% + 1.2rem); left: 50%; transform: translateX(-50%); background: rgba(13,13,13,0.97); border: 1px solid var(--line2); backdrop-filter: blur(12px); min-width: 180px; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s, transform 0.2s; transform: translateX(-50%) translateY(-6px); z-index: 200; }
+  .nav-dropdown:hover .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+  .nav-dropdown-menu a { display: block; padding: 0.85rem 1.25rem; color: var(--muted); text-decoration: none; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.2s, background 0.2s; border-bottom: 1px solid var(--line); }
+  .nav-dropdown-menu a:last-child { border-bottom: none; }
+  .nav-dropdown-menu a:hover { color: var(--accent); background: var(--bg3); }
+  .nav-dropdown-menu .ddm-label { font-size: 0.6rem; color: rgba(200,169,110,0.5); letter-spacing: 0.1em; display: block; margin-top: 0.1rem; text-transform: uppercase; }
 
   #hero { min-height: 100vh; display: grid; grid-template-columns: 1fr auto; align-items: flex-end; padding: 0 0 6rem 4rem; position: relative; border-bottom: 1px solid var(--line); overflow: hidden; }
   .hero-portrait { width: clamp(280px, 32vw, 480px); height: 100vh; object-fit: cover; object-position: center top; filter: grayscale(30%) contrast(1.05); opacity: 0.85; align-self: stretch; flex-shrink: 0; }
@@ -65,7 +76,9 @@
   .exp-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.9; }
 
   #radar { background: var(--bg2); }
-  .radar-inner { display: grid; grid-template-columns: 1fr 1.2fr; gap: 6rem; align-items: center; }
+  .frameworks-stack { display: flex; flex-direction: column; gap: 5rem; }
+  .framework-block { display: grid; grid-template-columns: 1fr 1.2fr; gap: 6rem; align-items: center; padding-bottom: 5rem; border-bottom: 1px solid var(--line); }
+  .framework-block:last-child { padding-bottom: 0; border-bottom: none; }
   .radar-label { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
   .radar-name { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 6vw, 5rem); color: var(--white); line-height: 1.1; margin-bottom: 1.5rem; }
   .radar-name span { color: var(--accent); }
@@ -80,6 +93,14 @@
   .rviz-icon { width: 32px; height: 32px; border: 1px solid var(--line2); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; flex-shrink: 0; color: var(--accent); font-family: 'Playfair Display', serif; }
   .rviz-label { color: var(--muted); flex: 1; }
   .rviz-connector { width: 1px; height: 1.2rem; background: var(--line2); margin-left: 1rem; }
+  .aaip-card { padding: 3rem; border: 1px solid var(--line2); background: var(--bg); display: flex; flex-direction: column; gap: 2rem; }
+  .aaip-badge { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
+  .aaip-desc { font-size: 0.85rem; color: var(--muted); line-height: 2; }
+  .aaip-components { display: flex; flex-direction: column; gap: 0; }
+  .aaip-comp { display: flex; align-items: center; gap: 1rem; font-size: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid var(--line); }
+  .aaip-comp:last-child { border-bottom: none; }
+  .aaip-comp-num { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: rgba(200,169,110,0.4); min-width: 1.5rem; line-height: 1; }
+  .aaip-comp-label { color: var(--muted); }
 
   #speaking .speaking-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; }
   .speaking-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top; filter: grayscale(20%) contrast(1.05); opacity: 0.9; margin-top: 2rem; }
@@ -128,7 +149,7 @@
     section { padding: 5rem 2rem; }
     #hero { padding: 0 2rem 5rem; }
     .hero-scroll { right: 2rem; }
-    .about-grid, .radar-inner, .speaking-grid, .research-grid, .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .about-grid, .framework-block, .speaking-grid, .research-grid, .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
     .expertise-grid { grid-template-columns: 1fr; }
     footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
     .engagement { grid-template-columns: 1fr; gap: 0.5rem; }
@@ -143,7 +164,19 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#expertise">Expertise</a></li>
-    <li><a href="#radar" style="color: var(--accent); font-weight: 500; font-size: 0.85rem; letter-spacing: 0.12em;">RA<span style="color: var(--white);">D</span>AR©</a></li>
+    <li class="nav-dropdown">
+      <span class="nav-dropdown-toggle">Frameworks <span class="nav-dropdown-arrow">▼</span></span>
+      <div class="nav-dropdown-menu">
+        <a href="#radar">
+          RA<span style="color: var(--white);">D</span>AR©
+          <span class="ddm-label">Intelligence Framework</span>
+        </a>
+        <a href="#aaip">
+          AAIP©
+          <span class="ddm-label">Research Method</span>
+        </a>
+      </div>
+    </li>
     <li><a href="#speaking">Speaking</a></li>
     <li><a href="#research">Research</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -159,7 +192,7 @@
     <p class="hero-tagline">Decoding influence. Engineering narratives.<br>Securing minds against information warfare.</p>
     <div class="hero-ctas">
       <a href="#contact" class="btn-primary">Invite to Speak</a>
-      <a href="#radar" class="btn-ghost">See <strong>RADAR</strong></a>
+      <a href="#radar" class="btn-ghost">See <strong>Frameworks</strong></a>
     </div>
   </div>
   <div class="hero-portrait-wrap">
@@ -241,25 +274,28 @@
   </div>
 </section>
 
-<section id="radar">
-  <div class="radar-inner">
-    <div>
-      <div class="section-label">Flagship Framework</div>
-      <div class="radar-label">Introducing</div>
-      <div class="radar-name"><span>RA</span><span style="color: var(--white);">D</span><span>AR</span> <sup style="font-size: 1.2rem; color: var(--accent); font-family: 'Inter', sans-serif; font-weight: 300; vertical-align: super;">©</sup></div>
-      <div class="radar-full">Read · Analyse · Discern · Act · Report &nbsp;©</div>
-      <p class="radar-desc">A Human-in-the-Loop intelligence pipeline for strategic communications and information warfare. RADAR places human judgment — the Discern stage — at the critical centre of an otherwise automated AI-driven process.</p>
-      <div class="radar-features">
-        <div class="radar-feat"><div class="feat-dot"></div><span>Automated OSINT crawl</span></div>
-        <div class="radar-feat"><div class="feat-dot"></div><span>AI sentiment & narrative mapping</span></div>
-        <div class="radar-feat"><div class="feat-dot"></div><span>Human-in-the-Loop (Discern)</span></div>
-        <div class="radar-feat"><div class="feat-dot"></div><span>AI-assisted response generation</span></div>
-        <div class="radar-feat"><div class="feat-dot"></div><span>Automated report & deck output</span></div>
-        <div class="radar-feat"><div class="feat-dot"></div><span>Grounded in HCC theory</span></div>
+<section id="radar" style="scroll-margin-top: 0px;">
+  <div class="section-label">Frameworks & Contributions</div>
+  <div class="frameworks-stack">
+
+    <!-- RADAR -->
+    <div class="framework-block">
+      <div>
+        <div class="radar-label">Flagship Framework</div>
+        <div class="radar-name"><span>RA</span><span style="color: var(--white);">D</span><span>AR</span> <sup style="font-size: 1.2rem; color: var(--accent); font-family: 'Inter', sans-serif; font-weight: 300; vertical-align: super;">©</sup></div>
+        <div class="radar-full">Read · Analyse · Discern · Act · Report &nbsp;©</div>
+        <p class="radar-desc">A Human-in-the-Loop intelligence pipeline for strategic communications and information warfare. RADAR places human judgment — the Discern stage — at the critical centre of an otherwise automated AI-driven process.</p>
+        <div class="radar-features">
+          <div class="radar-feat"><div class="feat-dot"></div><span>Automated OSINT crawl</span></div>
+          <div class="radar-feat"><div class="feat-dot"></div><span>AI sentiment & narrative mapping</span></div>
+          <div class="radar-feat"><div class="feat-dot"></div><span>Human-in-the-Loop (Discern)</span></div>
+          <div class="radar-feat"><div class="feat-dot"></div><span>AI-assisted response generation</span></div>
+          <div class="radar-feat"><div class="feat-dot"></div><span>Automated report & deck output</span></div>
+          <div class="radar-feat"><div class="feat-dot"></div><span>Grounded in HCC theory</span></div>
+        </div>
+        <a href="#contact" class="btn-primary">Request a Briefing</a>
       </div>
-      <a href="#contact" class="btn-primary">Request a Briefing</a>
-    </div>
-    <div class="radar-visual">
+      <div class="radar-visual">
       <div class="radar-visual-inner">
         <div style="font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem;">Intelligence pipeline</div>
         <div class="rviz-row">
@@ -296,6 +332,56 @@
         </div>
       </div>
     </div>
+  </div>
+
+    <!-- AAIP -->
+    <div class="framework-block" id="aaip" style="scroll-margin-top: 90px;">
+      <div>
+        <div class="radar-label">Proposed Research Method</div>
+        <div class="radar-name"><span>AAIP</span> <sup style="font-size: 1.2rem; color: var(--accent); font-family: 'Inter', sans-serif; font-weight: 300; vertical-align: super;">©</sup></div>
+        <div class="radar-full">AI-Assisted Interview Piloting &nbsp;©</div>
+        <p class="radar-desc">A conceptual framework for deploying Large Language Models to validate qualitative interview instruments prior to fieldwork — addressing the frequently neglected pilot testing phase of qualitative research design.</p>
+        <div class="radar-features">
+          <div class="radar-feat"><div class="feat-dot"></div><span>Persona-grounded LLM simulation</span></div>
+          <div class="radar-feat"><div class="feat-dot"></div><span>Pre-fieldwork instrument validation</span></div>
+          <div class="radar-feat"><div class="feat-dot"></div><span>Anti-hallucination protocols</span></div>
+          <div class="radar-feat"><div class="feat-dot"></div><span>Silicon sampling methodology</span></div>
+          <div class="radar-feat"><div class="feat-dot"></div><span>Algorithmic fidelity framework</span></div>
+          <div class="radar-feat"><div class="feat-dot"></div><span>AI-augmented qualitative method</span></div>
+        </div>
+        <a href="#" class="btn-ghost" style="display: inline-flex; align-items: center; gap: 0.5rem;">Read the Paper <span style="font-size: 0.9rem;">→</span></a>
+      </div>
+      <div class="aaip-card">
+        <div class="aaip-badge">Five Sequential Components</div>
+        <p class="aaip-desc">AAIP argues that LLMs — when properly constrained through structured persona cards and anti-hallucination protocols — can serve as credible synthetic respondents for qualitative instrument validation. Drawing on silicon sampling, algorithmic fidelity, and AI-augmented qualitative methodology.</p>
+        <div class="aaip-components">
+          <div class="aaip-comp">
+            <div class="aaip-comp-num">01</div>
+            <div class="aaip-comp-label">Persona Construction</div>
+          </div>
+          <div class="aaip-comp">
+            <div class="aaip-comp-num">02</div>
+            <div class="aaip-comp-label">Constraint Architecture</div>
+          </div>
+          <div class="aaip-comp">
+            <div class="aaip-comp-num">03</div>
+            <div class="aaip-comp-label">Simulation Protocol</div>
+          </div>
+          <div class="aaip-comp">
+            <div class="aaip-comp-num">04</div>
+            <div class="aaip-comp-label">Instrument Diagnosis</div>
+          </div>
+          <div class="aaip-comp">
+            <div class="aaip-comp-num">05</div>
+            <div class="aaip-comp-label">Validation Calibration</div>
+          </div>
+        </div>
+        <div style="padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: 0.7rem; color: var(--muted);">
+          Published: <span style="color: var(--accent);">SSRN Working Paper · 2025</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -427,8 +513,8 @@
 </section>
 
 <footer>
-  <div class="footer-name">Dr. Mohd Firdauz bin Mohd Fathir · PhD Media and Information Warfare</div>
-  <div class="footer-copy">© 2026 · CMIWS · UiTM Rembau</div>
+  <div class="footer-name">Dr. Mohd Firdauz Mohd Fathir</div>
+  <div class="footer-copy">© 2025 · All rights reserved</div>
 </footer>
 
 </body>
